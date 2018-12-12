@@ -1,8 +1,7 @@
-# Ansible Role: Replicado Sybase
+# Ansible Role: SAP ATE
 
 Esta *role* tenta encapsular toda lógica para criação de um servidor
-com o *SAP Sybase ASE Express Edition for Linux* com a finalidade de ser 
-um alvo para replicação. Ela foi baseada em [ansible-sap-iq](https://github.com/andrewrothstein/ansible-sap-iq).
+*SAP Sybase ASE Express Edition for Linux* e foi baseada em [ansible-sap-iq](https://github.com/andrewrothstein/ansible-sap-iq).
 
 ## Recursos 
 
