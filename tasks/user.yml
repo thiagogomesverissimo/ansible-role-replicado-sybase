@@ -1,0 +1,13 @@
+---
+- name: create sybase group
+  group:
+    name: 'sybase'
+    state: present
+
+- name: create sybase user
+  user:
+    name: 'sybase'
+    group: 'sybase'
+    home: '{{sap_ase_home}}'
+    password: '{{sap_ase_password}}'
+    state: present
