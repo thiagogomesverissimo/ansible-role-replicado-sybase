@@ -1,0 +1,8 @@
+---
+- name: fix owner
+  file:
+    dest: '{{sap_ase_log}}'
+    state: directory
+    owner: sybase
+    group: sybase
+    recurse: yes

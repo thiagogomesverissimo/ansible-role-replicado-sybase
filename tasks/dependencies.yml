@@ -1,0 +1,9 @@
+---
+- name: install libaio1
+  apt:
+    name: libaio1
+    update_cache: yes
+    
+- name: install unzip
+  apt:
+    name: unzip

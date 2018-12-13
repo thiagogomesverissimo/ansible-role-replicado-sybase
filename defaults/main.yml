@@ -1,3 +1,9 @@
 ---
 sap_ase_home: '/sybase'
+sap_ase_bin: "{{sap_ase_home}}/bin"
 sap_ase_password: 'Sybase123'
+sap_ase_path2tar: 'exemplo.tar.gz'
+sap_ase_server_name: 'SYBASE'
+sap_ase_host: 'sybase.example.com'
+sap_ase_ip: '192.168.8.56'
+sap_ase_log: '/log'

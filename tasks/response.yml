@@ -1,0 +1,7 @@
+---
+- name: copy response
+  template:
+    src: 'response.j2'
+    dest: '{{sap_ase_home}}/install/response'
+    owner: sybase
+    group: sybase

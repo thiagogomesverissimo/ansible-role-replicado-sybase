@@ -1,0 +1,12 @@
+[Unit]
+Description=SYBASE ASE
+After=network.target
+
+[Service]
+ExecStart={{sap_ase_bin}}/sybase_init start
+Type=forking
+PIDFile={{sap_ase_bin}}/sybase.pid
+ExecStop={{sap_ase_bin}}/sybase_init stop
+
+[Install]
+WantedBy=multi-user.target
