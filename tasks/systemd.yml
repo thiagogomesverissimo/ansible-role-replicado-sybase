@@ -1,0 +1,11 @@
+---
+- name: copy service file
+  template:
+    src: sybase.service.j2
+    dest: /etc/systemd/system/sybase.service
+
+- name: copy sybase_init file
+  template:
+    src: sybase_init.j2
+    dest: "{{sap_ase_bin}}/sybase_init"
+    mode: '0700'

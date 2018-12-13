@@ -1,0 +1,13 @@
+---
+- name: create sybase group
+  group:
+    name: 'sybase'
+    state: present
+
+- name: create sybase user
+  user:
+    name: 'sybase'
+    groups: sybase,sudo
+    home: '{{sap_ase_home}}'
+    password: "{{sap_ase_password|password_hash('sha512')}}"
+    state: present

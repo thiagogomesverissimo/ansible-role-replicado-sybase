@@ -1,0 +1,16 @@
+- name: install...
+  become: yes
+  become_user: 'sybase'
+  command: >-
+    {{sap_ase_home}}/install/setup.bin
+    -f {{sap_ase_home}}/install/response
+    -i silent
+    -DAGREE_TO_SAP_LICENSE=true
+  args:
+    creates: '{{sap_ase_bin}}/SYBASE.sh'
+
+    #- name: set environment variables
+    #  file:
+    #    src: '{{sap_ase_bin}}/IQ.sh'
+    #    dest: '/etc/profile.d/IQ.sh'
+    #    state: link

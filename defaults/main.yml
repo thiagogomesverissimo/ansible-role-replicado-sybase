@@ -1,15 +1,9 @@
 ---
-sap_username: sybase
-sap_groupname: sybase
-sap_home: /replicado/sybase
-sap_compressed: '~/ASE_Suite.linuxamd64.tgz'
-sap_server: REPLICADO
-sap_password: SybaseR123Mudar
-sap_host: 'replicado.fflch.usp.br'
-
-sap_sysam_notification_enable: 'false'
-sap_sysam_notification_smtp_hostname: smtp
-sap_sysam_notification_smtp_portnumber: 25
-sap_sysam_notification_sender_email: arothste
-sap_sysam_notification_recipient_email: arothste
-sap_sysam_notification_email_severity: NONE
+sap_ase_home: '/sybase'
+sap_ase_bin: "{{sap_ase_home}}/bin"
+sap_ase_password: 'Sybase123'
+sap_ase_path2tar: 'exemplo.tar.gz'
+sap_ase_server_name: 'SYBASE'
+sap_ase_host: 'sybase.example.com'
+sap_ase_ip: '192.168.8.56'
+sap_ase_log: '/log'
