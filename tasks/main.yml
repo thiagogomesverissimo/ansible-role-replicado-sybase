@@ -1,7 +1,7 @@
 ---
 - import_tasks: user.yml
 - import_tasks: dependencies.yml
-  #- import_tasks: copy.yml
+- import_tasks: copy.yml
 - import_tasks: response.yml
 - import_tasks: log.yml
 - import_tasks: hosts.yml

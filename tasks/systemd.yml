@@ -9,3 +9,9 @@
     src: sybase_init.j2
     dest: "{{sap_ase_bin}}/sybase_init"
     mode: '0700'
+
+- name: enable service
+  systemd:
+    name: sybase
+    state: started
+    enabled: True
