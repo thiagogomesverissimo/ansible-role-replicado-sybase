@@ -60,21 +60,18 @@ Criar um banco chamado fflch_dbc. Lista databases:
     1> sp_helpdb	
     2> go
 
-Adicionar o usuário dbmaint no banco de dados fflch_dbc.
-Lista usuários do banco fflch_dbc:
+Ativar a opção de truncate log on checkpoint para o banco de dados fflch_dbc:
+
+    1> use master
+    2> go
+    1> sp_dboption fflch_dbc, "trunc log on chkpt", true
+    2> go
+    
+Usuário dbmaint com privilégio de criar tabelas no Banco de Dados (alias de dbo):
 
     1> use fflch_dbc
     2> go
-    1> sp_adduser dbmaint
-    2> go
-    1> sp_helpuser
-    2> go
-
-Se quiser remover o usuário dbmaint do banco fflch_dbc:
-
-    1> use fflch_dbc
-    2> go
-    1> sp_dropuser dbmaint
+    1> sp_addalias dbmaint,dbo
     2> go
     1> sp_helpuser
     2> go
@@ -108,13 +105,6 @@ SeuArquivoComSql.sql assim:
 
     isql -Usa -PSuaSenha -iSeuArquivoComSql.sql
 
-Ativar a opção de truncate log on checkpoint para o banco de dados fflch_dbc:
-
-    1> use master
-    2> go
-    1> sp_dboption fflch_dbc, "trunc log on chkpt", true
-    2> go
-
 Conferir se o sort order é case-sensitive, compatível com ISO 8859-1(Latin-1)
 
     1> use master
@@ -126,7 +116,7 @@ Pendẽncias:
 
  - Collation do banco é case-sensitive
  - Language = US English
- - criar um usuário com nome dbmaint, com privilégio de criar tabelas no Banco de Dados (alias de dbo)
+ - 
  - Deve-se configurar uma profile para que o Banco possa ser aberto e utilizado. Sugere-se colocar o Banco de Dados recém-criado como default, no statement de inicialização do Servidor.
  - manter uma política de ‘backup’ diário do Banco de Dados
  - um ‘backup’ de transações (dump tran). O backup do transaction log não é essencial p/ replicação.
