@@ -1,9 +1,11 @@
 # Ansible Role: SAP ASE
 
-Esta *role* tenta encapsular toda lógica para criação de um servidor
+Esta *role* encapsula parte da toda lógica da criação de um servidor
 *SAP Sybase ASE Express Edition for Linux* e foi baseada em [ansible-sap-iq](https://github.com/andrewrothstein/ansible-sap-iq).
 
 ## Recursos
+ 
+ - Cria um usuá
 
 ## Role Variables
 
@@ -17,12 +19,12 @@ See [meta/main.yml](meta/main.yml)
     - fflch.sap-ase
 ```
 
-## Comandos do isql
+## Algumas configurações com o isql
 
 Conectar no servidor estando no mesmo, o -w1000 torna os outputs 
 mas *bonitos*:
 
-    isql -Usa -PSUA_SENHA -w1000
+    isql -Usa -PSUA_SENHA -SSERVERNAME -w1000
 
 Conectar no servidor remotamente:
 
@@ -55,68 +57,54 @@ Criar um banco chamado fflch_dbc. Lista databases:
 
     1> use master
     2> go
-    1> create database fflch_dbc
-    2> go
+    disk init 
+    name = "fflch_data", 
+    physname = "/replicado/bin/data/fflch_data.dat", 
+    size = "40G"
+
+    disk init
+    name = "fflch_log", 
+    physname = "/replicado/bin/data/fflch_log.dat", 
+    size = "40G"
+
+    CREATE DATABASE fflch ON fflch_data='40G' LOG ON fflch_log='40G'
+    GO
+
     1> sp_helpdb	
+    2> go
+    1> sp_helpdb fflch	
     2> go
 
 Ativar a opção de truncate log on checkpoint para o banco de dados fflch_dbc:
 
     1> use master
     2> go
-    1> sp_dboption fflch_dbc, "trunc log on chkpt", true
+    1> sp_dboption fflch, "trunc log on chkpt", true
     2> go
     
 Usuário dbmaint com privilégio de criar tabelas no Banco de Dados (alias de dbo):
 
-    1> use fflch_dbc
+    1> use fflch
     2> go
     1> sp_addalias dbmaint,dbo
     2> go
     1> sp_helpuser
     2> go
 
+## Dicas
+
+Mostrar tabelas do banco de dados fflch:
+
+    1> use fflch_dbc
+    2> go
+    1> exec sp_tables '%', '%', 'fflch',"'TABLE'"
+    2> go
+
+Você pode carregar um arquivo com seu sql:
+
+    isql -Usa -PSuaSenha -SSEU_SERVER -iSeuArquivoComSql.sql
+
 Mostrar qual banco de dados que estou connectado no momento:
 
     1> select db_name()
     2> go
-
-Criar uma tabela no banco de dados fflch_dbc:
-    
-    1> use fflch_dbc
-    2> go
-
-    1>create table pagamentos (
-     id int not null,
-     nome varchar(160) not null,
-     recebimento_em timestamp null,
-    )
-    6>go
-
-Mostrar tabelas do banco de dados fflch_dbc:
-
-    1> use fflch_dbc
-    2> go
-    1> exec sp_tables '%', '%', 'fflch_dbc',"'TABLE'"
-    2> go
-
-Você pode carregar um arquivo com seu sql, como por exemplo,
-SeuArquivoComSql.sql assim:
-
-    isql -Usa -PSuaSenha -iSeuArquivoComSql.sql
-
-Conferir se o sort order é case-sensitive, compatível com ISO 8859-1(Latin-1)
-
-    1> use master
-    2> go
-    1> sp_helpsort
-    2> go
-
-Pendẽncias:
-
- - Collation do banco é case-sensitive
- - Language = US English
- - 
- - Deve-se configurar uma profile para que o Banco possa ser aberto e utilizado. Sugere-se colocar o Banco de Dados recém-criado como default, no statement de inicialização do Servidor.
- - manter uma política de ‘backup’ diário do Banco de Dados
- - um ‘backup’ de transações (dump tran). O backup do transaction log não é essencial p/ replicação.
