@@ -1,0 +1,12 @@
+---
+- name: set the stack size to unlimited to avoid shared memory attachment problems for current user and session
+  become: yes
+  become_user: 'sybase'
+  shell: ulimit -s unlimited
+
+- name: set the stack size to unlimited to avoid shared memory attachment problems, permanent for user sybase
+  pam_limits:
+    domain: 'sybase'
+    limit_type: soft
+    limit_item: stack
+    value: unlimited
