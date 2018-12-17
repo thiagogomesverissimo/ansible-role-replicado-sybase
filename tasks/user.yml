@@ -7,6 +7,7 @@
 - name: create sybase user
   user:
     name: 'sybase'
+    shell: /bin/bash
     groups: sybase,sudo
     home: '{{sap_ase_home}}'
     password: "{{sap_ase_password|password_hash('sha512')}}"
