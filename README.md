@@ -5,21 +5,15 @@ Esta *role* encapsula parte da toda lógica da criação de um servidor
 
 ## Recursos
  
- - Cria um usuá
+ - Cria um usuário e grupo sybase
+ - Configura ulimit para unlimited
+ - Instala dependências necessárias: libaio1, unzip
+ - Copia e descompacta o pacote sybase .tgz no servidor
+ - Provê um arquivo *response* com uma parametrização básica para instalação do SAP Sybase ASE
+ - Permite especificar o caminho do log de serviço do servidor
+ - Configura o comando service sybase start (ou stop)
 
-## Role Variables
-
-See [meta/main.yml](meta/main.yml)
-
-## Example Playbook
-
-```yml
-- hosts: servers
-  roles:
-    - fflch.sap-ase
-```
-
-## Algumas configurações com o isql
+## Algumas configurações pós-instalação com o isql
 
 Conectar no servidor estando no mesmo, o -w1000 torna os outputs 
 mas *bonitos*:

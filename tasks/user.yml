@@ -8,7 +8,10 @@
   user:
     name: 'sybase'
     shell: /bin/bash
+    skeleton: "/etc/skel"
+    home: "{{ sap_ase_home }}"
+    group: sybase
     groups: sybase,sudo
-    home: '{{sap_ase_home}}'
     password: "{{sap_ase_password|password_hash('sha512')}}"
     state: present
+    append: yes
