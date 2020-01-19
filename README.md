@@ -15,7 +15,8 @@ Esta *role* encapsula parte da toda lógica da criação de um servidor
 
 ## Pré instalação
 
- - Download: http://public.fflch.usp.br/ASE_Suite.linuxamd64.tgz
+ - Download: https://www.sap.com/cmp/syb/crm-xu15-int-asexprdm/index.html
+ - or http://public.fflch.usp.br/ASE_Suite.linuxamd64.tgz
 
 ## Algumas configurações pós-instalação com o isql
 
