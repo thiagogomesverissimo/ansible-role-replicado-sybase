@@ -13,6 +13,10 @@ Esta *role* encapsula parte da toda lógica da criação de um servidor
  - Permite especificar o caminho do log de serviço do servidor
  - Configura o comando service sybase start (ou stop)
 
+## Pré instalação
+
+ - Download: http://public.fflch.usp.br/ASE_Suite.linuxamd64.tgz
+
 ## Algumas configurações pós-instalação com o isql
 
 Conectar no servidor estando no mesmo, o -w1000 torna os outputs 
